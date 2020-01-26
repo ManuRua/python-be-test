@@ -32,5 +32,6 @@
             "strikethrough": false,
             "backgroundColor": "transparent"
         }
-    ]
+    ],
+    "python.pythonPath": "/Users/manurua/Projects/Carto/python-be-test/venv/bin/python3"
 }

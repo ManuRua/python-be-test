@@ -1,9 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
 
-@app.route("/turnover/byAgeAndGender")
+@app.route("/turnover/byAgeAndGender", methods=['GET'])
 def getTurnoverByAgeAndGender():
     """
     Accumulated widget: Total turnover & turnovers by age and gender
@@ -16,7 +16,7 @@ def getTurnoverByAgeAndGender():
     ordered - Results ordered by turnover [ASC, DESC]
     Return: Total turnover & turnover by age and gender between period
     """
-    return jsonify({
+    return {
         "total": 0,
         "ages": {
             "<=24": {
@@ -44,10 +44,10 @@ def getTurnoverByAgeAndGender():
                 "F": 0
             }
         }
-    })
+    }
 
 
-@app.route("/turnover/monthlyBy/<field>/")
+@app.route("/turnover/monthlyBy/<field>/", methods=['GET'])
 def turnoverByAgeAndGender(field):
     """
     Time series widget: Monthly turnover by Age or Gender
@@ -111,7 +111,7 @@ def turnoverByAgeAndGender(field):
             ">=65": 0
         }
     }
-    return jsonify(byGender if field == 'gender' else byAge)
+    return byGender if field == 'gender' else byAge
 
 
 if __name__ == '__main__':

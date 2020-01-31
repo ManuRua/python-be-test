@@ -48,7 +48,7 @@ def getTurnoverByAgeAndGender():
 
 
 @app.route("/turnover/monthlyBy/<field>/", methods=['GET'])
-def turnoverByAgeAndGender(field):
+def getMonthlyTurnoverByAgeOrGender(field):
     """
     Time series widget: Monthly turnover by Age or Gender
 

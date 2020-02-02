@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+    api:
+        build: .
+        container_name: be-test-project
+        ports:
+            - 4000:4000
+        volumes:
+            - ./:/app
+        depends_on:
+            - postgis
+            # - rediscluster
+    postgis:
+        image: mdillon/postgis
+        env_file:
+            - .env
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgis-data:/data
+            - ./:/usr/src/app
+        restart: unless-stopped
+
+    # redis:
+    #     image: redis:5-alpine
+    #     env_file:
+    #         - .env
+    #     ports:
+    #         - '6379:6379'
+    #     restart: unless-stopped,
+    #     logging:
+    #         driver: 'json-file'
+
+
+volumes:
+    postgis-data:
